@@ -1,0 +1,25 @@
+trigger:
+- master  # This triggers the pipeline on commits to the master branch
+
+pool:
+  name: Default  # Use the default agent pool (you can specify your own if needed)
+
+steps:
+- checkout: self  # This step checks out your code from the repository
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'  # Specify the Java version you want to use
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+    jdkInstallerOption: 'JDKVersion'
+
+- script: |
+    echo "Building the Java application..."
+    javac HelloWorld.java  # Compile the Java program
+  displayName: 'Compile Java Program'
+
+- script: |
+    echo "Running the Java application..."
+    java HelloWorld  # Run the Java program
+  displayName: 'Run Java Program'
