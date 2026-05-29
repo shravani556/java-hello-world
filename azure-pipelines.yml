@@ -27,3 +27,4 @@ steps:
       java HelloWorld
     displayName: 'Run HelloWorld'
     workingDirectory: $(Build.SourcesDirectory)
+    
